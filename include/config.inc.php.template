@@ -1,0 +1,5 @@
+<?php
+    $config['host'] = 'localhost';
+    $config['port'] = '6600';
+    $config['password'] = 'thinkofsomethingcreative';
+?>
