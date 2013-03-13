@@ -9,6 +9,7 @@
 
     <!-- Le styles -->
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../assets/css/custom.css" rel="stylesheet">
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -36,10 +37,54 @@
     <h3 id="myModalLabel">About this App</h3>
   </div>
   <div class="modal-body">
-    <p>The MPD-Manager toolset is made by <a href="mailto:roy@qonnect-it.nl">R. van Dongen</a></p>
+    <p>The MPD-Manager is made by <a href="mailto:roy@qonnect-it.nl">R. van Dongen</a></p>
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
+
+<!-- Define Modal Delete-item -->
+<div id="delete" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Delete media</h3>
+  </div>
+  <form class="form-horizontal" action="index.php"  method="post">
+  <div class="modal-footer">
+    <input type="hidden" name=$itemtodelete>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Abort</button>
+    <button type="submit" class="btn btn-primary">Delete item</button>
+  </form>
+  </div>
+  </div>
+</div>
+
+<!-- Define Modal Media -->
+<div id="addmedia" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Add media</h3>
+  </div>
+  <div class="modal-body">
+    <p>
+      <form class="form-horizontal" action="index.php"  method="post">
+        <fieldset>
+        <div class="control-group">
+          <!-- Text input-->
+          <label class="control-label" name="label">URL/MRL</label>
+          <div class="controls">
+            <input type="text" placeholder="http://stream" class="input-xlarge" name="mediaurl">
+            <p class="help-block"></p>
+          </div>
+        </div>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button type="submit" class="btn btn-primary">Save changes</button>
+  </fieldset>
+  </form>
   </div>
 </div>
 
@@ -56,15 +101,36 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
+              <li><a href="#addmedia" data-toggle="modal">Add Media</a></li>
               <li><a href="#about" data-toggle="modal">About</a></li>
+              <li><a><?php echo $badge; ?></a></li>
             </ul>
             <ul class="nav pull-right">
-              <a href="#"><button class="btn btn-primary btn-small"><i class="icon-white icon-backward"></i></button></a>
-              <a href="#"><button class="btn btn-primary btn-small"><i class="icon-white icon-play"></i></button></a>
-              <a href="#"><button class="btn btn-primary btn-small"><i class="icon-white icon-pause"></i></button></a>
-              <a href="#"><button class="btn btn-primary btn-small"><i class="icon-white icon-forward"></i></button></a>
-            </ul>
-          </div><!--/.nav-collapse -->
+              <a href="index.php?action=previous">
+                <button class="btn btn-primary btn-small">
+                  <i class="icon-white icon-backward"></i>
+                </button>
+              </a>
+              <?php echo $playpause; ?>
+              <a href="index.php?action=next">
+                <button class="btn btn-primary btn-small">
+                  <i class="icon-white icon-forward"></i>
+                </button>
+              </a>
+              <a href="index.php?action=voldown">
+                <button class="btn btn-primary btn-small">
+                  <i class="icon-white icon-volume-down"></i>
+                </button>
+              </a>
+              <a href="index.php?action=volup">
+                <button class="btn btn-primary btn-small">
+                  <i class="icon-white icon-volume-up"></i>
+                </button>
+              </a>
+              <?php echo $MuteButton; ?>
+              <?php echo $VolumeBar; ?>
+              </ul>
+            </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
