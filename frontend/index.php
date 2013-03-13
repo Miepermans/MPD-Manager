@@ -25,7 +25,7 @@ if(isset($_GET['action'])) {
 		$mpd->Next(); header('Location: ./#current'); break;
 	case 'voldown':
 		$mpd->AdjustVolume('-'.$config['volumeVar']); break;
-		$VolumeVar = $mpd->volume;
+		$VolumeVar = $mpd->volume; break;
 	case 'volup':
 		$mpd->AdjustVolume('+'.$config['volumeVar']); 
 		$VolumeVar = $mpd->volume; break;
