@@ -24,10 +24,10 @@ if(isset($_GET['action'])) {
 	case 'next':
 		$mpd->Next(); header('Location: ./#current'); break;
 	case 'voldown':
-		$mpd->AdjustVolume('-'.$config['volumeVar']); break;
+		$mpd->AdjustVolume('-'.$config['volumeSteps']); break;
 		$VolumeVar = $mpd->volume; break;
 	case 'volup':
-		$mpd->AdjustVolume('+'.$config['volumeVar']); 
+		$mpd->AdjustVolume('+'.$config['volumeSteps']); 
 		$VolumeVar = $mpd->volume; break;
 	case 'goto':
 		$mpd->SkipTo($_GET['item']); break;
