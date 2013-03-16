@@ -33,6 +33,14 @@ if(isset($_GET['action'])) {
 		$mpd->SkipTo($_GET['item']); break;
 	case 'delete':
 		$mpd->PLRemove($_GET['item']); break;
+	case 'repeat':
+		if($mpd->repeat == 0) {
+			$mpd->SetSingle(1);
+			$mpd->SetRepeat(1); break;
+		} else {
+			$mpd->SetSingle(0);
+			$mpd->SetRepeat(0); break;
+		}
 	//case 'mute':
 	//	$mpd->AdjustVolume(-100);
 	//	$MuteButton = '<a href="index.php?action=mute" class="btn btn-danger btn-small"><i class="icon-white icon-volume-off"></i></a>'; break;
@@ -44,6 +52,20 @@ if(isset($_GET['action'])) {
 
 if(isset($_POST['mediaurl'])) {
 	$mpd->PLAdd($_POST['mediaurl']);
+}
+
+if(isset($_POST['upload'])) {
+	$target_path = $config['musicdir'];
+
+	$target_path = $target_path . basename( $_FILES['uploadedfile']['name']); 
+
+	if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
+    	echo "The file ".  basename( $_FILES['uploadedfile']['name']). 
+    	" has been uploaded";
+	} else{
+    	echo "There was an error uploading the file, please try again!";
+	}
+	$mpd->PLAdd($_FILES['uploadedfile']['name']);
 }
 
 	switch($mpd->state) {

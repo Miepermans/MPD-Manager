@@ -3,4 +3,5 @@
     $config['port'] = '6600';
     $config['password'] = NULL;
     $config['volumeSteps'] = '6';
+    $config['musicdir'] = '/mnt/data/music/'
 ?>

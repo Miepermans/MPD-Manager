@@ -1,6 +1,12 @@
 <?php
 /* 
  * 
+ * Roy van Dongen 03/2013
+ * Version mpd.class.php-1.4
+ * - take over from Sven Ginka
+ * - added function "single" to use in combination with repeat
+ * - usage : $mpd->single(); and $mpd->single for status
+ *
  * Sven Ginka 03/2010
  * Version mpd.class.php-1.3
  * - take over from Hendrik Stoetter
@@ -65,6 +71,7 @@ define("MPD_CMD_PLSAVE",      "save");
 define("MPD_CMD_KILL",        "kill");
 define("MPD_CMD_REFRESH",     "update");
 define("MPD_CMD_REPEAT",      "repeat");
+define("MPD_CMD_SINGLE",      "single");
 define("MPD_CMD_LSDIR",       "lsinfo");
 define("MPD_CMD_SEARCH",      "search");
 define("MPD_CMD_START_BULK",  "command_list_begin");
@@ -129,6 +136,7 @@ class mpd {
     var $current_track_id;
     var $volume;
     var $repeat;
+    var $single;
     var $random;
 
     var $uptime;
@@ -581,6 +589,19 @@ class mpd {
         $this->repeat = $repVal;
         if ( $this->debugging ) echo "mpd->SetRepeat() / return\n";
         return $rpt;
+    }
+
+    /* SetSingle()
+     *
+     * Enables 'single' mode The <sinVal> parameter
+     * is either 1 (on) or 0 (off).
+     */
+    function SetSingle($sinVal) {
+        if ( $this->debugging ) echo "mpd->SetSingle()\n";
+        $sin = $this->SendCommand(MPD_CMD_SINGLE,$sinVal);
+        $this->single = $sinVal;
+        if ( $this->debugging ) echo "mpd->SetSingle() / return\n";
+        return $sin;
     }
 
     /* SetRandom() 
@@ -1083,6 +1104,7 @@ class mpd {
         }
 
         $this->repeat = $status['repeat'];
+        $this->single = $status['single'];
         $this->random = $status['random'];
 
         $this->db_last_refreshed = $stats['db_update'];
