@@ -101,7 +101,7 @@
       <form class="form-horizontal" action="index.php"  method="post" enctype="multipart/form-data">
         <fieldset>
         <div class="control-group">
-          <!-- File input-->
+          <!-- Text input-->
           <div class="controls">
             <input type="file" class="input-xlarge" name="uploadedfile">
             <input type="hidden" name="MAX_FILE_SIZE" value="20000000" />
@@ -112,7 +112,7 @@
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button type="submit" name="upload" class="btn btn-primary">Upload File</button>
+    <button type="submit" name=upload class="btn btn-primary">Upload File</button>
   </fieldset>
   </form>
   </div>
@@ -147,12 +147,8 @@
                   <i class="icon-white icon-forward"></i>
                 </button>
               </a>
-              <a href="index.php?action=repeat">
-                <button class="btn btn-primary btn-small">
-                  <i class="icon-white icon-retweet"></i>
-                </button>
-              </a>
-              <a href="index.php?action=voldown">
+              <?php echo $repeatbutton; ?>
+	      <a href="index.php?action=voldown">
                 <button class="btn btn-primary btn-small">
                   <i class="icon-white icon-volume-down"></i>
                 </button>

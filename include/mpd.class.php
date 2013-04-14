@@ -1,12 +1,6 @@
 <?php
 /* 
  * 
- * Roy van Dongen 03/2013
- * Version mpd.class.php-1.4
- * - take over from Sven Ginka
- * - added function "single" to use in combination with repeat
- * - usage : $mpd->single(); and $mpd->single for status
- *
  * Sven Ginka 03/2010
  * Version mpd.class.php-1.3
  * - take over from Hendrik Stoetter
@@ -591,9 +585,9 @@ class mpd {
         return $rpt;
     }
 
-    /* SetSingle()
-     *
-     * Enables 'single' mode The <sinVal> parameter
+    /* SetSingle() 
+     * 
+     * Enables 'single' mode The <repVal> parameter 
      * is either 1 (on) or 0 (off).
      */
     function SetSingle($sinVal) {
@@ -1105,7 +1099,7 @@ class mpd {
 
         $this->repeat = $status['repeat'];
         $this->single = $status['single'];
-        $this->random = $status['random'];
+	$this->random = $status['random'];
 
         $this->db_last_refreshed = $stats['db_update'];
 
